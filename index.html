@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo List</title>
+    <style>
+        *{
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+    background-image: url(https://static.vecteezy.com/system/resources/previews/031/386/455/non_2x/international-friendship-day-photo.jpg);
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    
+}
+
+#wrapper {
+    background-color:rgba(56, 199, 43, 0.342);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+}
+
+#input {
+    width: 80%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 2px solid #0692c5;
+    border-radius: 4px;
+    outline: none;
+    border-radius: 30px;
+    font-size: 20px;
+}
+
+#add {
+    padding: 10px 20px;
+    background-color: #ffffff;
+    color: rgb(44, 231, 72);
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+#add:hover {
+    background-color: #45a049;
+}
+
+#todoList {
+    text-align: left;
+}
+
+.task {
+    background-color: #f9f9f9;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.remove {
+    background-color: rgb(255, 255, 255);
+    color: rgb(205, 0, 0);
+    border: none;
+    padding: 5px 10px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 800;
+}
+
+.remove:hover {
+    background-color: darkred;
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+    </style>
+
+</head>
+<body>
+    <div id="wrapper">
+        <h2>TODO LIST</h2>
+        <input type="text" id="input">
+        <button id="add">Add</button>
+        <div id="todoList">
+
+        </div>
+    </div>
+    <script>
+        document.getElementById("add").addEventListener("click", function() {
+    
+    const taskText = document.getElementById("input").value;
+
+    
+    if (taskText.trim() !== "") {
+        
+        const taskDiv = document.createElement("div");
+        taskDiv.classList.add("task");
+
+       
+        const taskContent = document.createElement("span");
+        taskContent.classList.add("taskContent");
+        taskContent.textContent = taskText;
+
+  
+        const removeButton = document.createElement("button");
+        removeButton.classList.add("remove");
+        removeButton.textContent = "Remove";
+
+        taskDiv.appendChild(taskContent);
+        taskDiv.appendChild(removeButton);
+
+        
+        document.getElementById("todoList").appendChild(taskDiv);
+
+      
+        document.getElementById("input").value = "";
+
+        
+        removeButton.addEventListener("click", function() {
+            taskDiv.remove();
+        });
+    } else {
+        alert("Please enter a task!");
+    }
+});
+
+
+document.getElementById("input").addEventListener("keypress", function(e) {
+    if (e.key === "Enter") {
+        document.getElementById("add").click();
+    }
+});
+    </script>
+</body>
+</html>
